@@ -1,0 +1,125 @@
+{
+  "name": "inputfy",
+  "version": "1.0.0",
+  "description": "Validador TypeScript-first compatível com Zod — alta segurança e estabilidade",
+  "author": "InputFy Contributors",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "inputfy": "./dist/cli/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inputfy-js/InputFy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/inputfy-js/InputFy/issues"
+  },
+  "homepage": "https://github.com/inputfy-js/InputFy#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./locales": {
+      "types": "./dist/locales/index.d.ts",
+      "import": "./dist/locales/index.js",
+      "require": "./dist/locales/index.cjs"
+    },
+    "./worker-runner": {
+      "import": "./dist/performance/worker-runner.js",
+      "require": "./dist/performance/worker-runner.cjs"
+    },
+    "./express": {
+      "types": "./dist/integrations/express/index.d.ts",
+      "import": "./dist/integrations/express/index.js",
+      "require": "./dist/integrations/express/index.cjs"
+    },
+    "./react-hook-form": {
+      "types": "./dist/integrations/react-hook-form/index.d.ts",
+      "import": "./dist/integrations/react-hook-form/index.js",
+      "require": "./dist/integrations/react-hook-form/index.cjs"
+    },
+    "./trpc": {
+      "types": "./dist/integrations/trpc/index.d.ts",
+      "import": "./dist/integrations/trpc/index.js",
+      "require": "./dist/integrations/trpc/index.cjs"
+    },
+    "./nestjs": {
+      "types": "./dist/integrations/nestjs/index.d.ts",
+      "import": "./dist/integrations/nestjs/index.js",
+      "require": "./dist/integrations/nestjs/index.cjs"
+    },
+    "./electron": {
+      "types": "./dist/integrations/electron/index.d.ts",
+      "import": "./dist/integrations/electron/index.js",
+      "require": "./dist/integrations/electron/index.cjs"
+    },
+    "./drizzle": {
+      "types": "./dist/integrations/drizzle/index.d.ts",
+      "import": "./dist/integrations/drizzle/index.js",
+      "require": "./dist/integrations/drizzle/index.cjs"
+    },
+    "./integrations": {
+      "types": "./dist/integrations/index.d.ts",
+      "import": "./dist/integrations/index.js",
+      "require": "./dist/integrations/index.cjs"
+    },
+    "./core": {
+      "types": "./dist/ecosystem/core/index.d.ts",
+      "import": "./dist/ecosystem/core/index.js",
+      "require": "./dist/ecosystem/core/index.cjs"
+    },
+    "./forms": {
+      "types": "./dist/ecosystem/forms/index.d.ts",
+      "import": "./dist/ecosystem/forms/index.js",
+      "require": "./dist/ecosystem/forms/index.cjs"
+    },
+    "./server": {
+      "types": "./dist/ecosystem/server/index.d.ts",
+      "import": "./dist/ecosystem/server/index.js",
+      "require": "./dist/ecosystem/server/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts src/locales/index.ts src/performance/worker-runner.ts src/cli/index.ts src/integrations/index.ts src/integrations/express/index.ts src/integrations/react-hook-form/index.ts src/integrations/trpc/index.ts src/integrations/nestjs/index.ts src/integrations/electron/index.ts src/integrations/drizzle/index.ts src/ecosystem/core/index.ts src/ecosystem/forms/index.ts src/ecosystem/server/index.ts --format esm,cjs --dts --clean",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "benchmark": "npm run build && node scripts/benchmark.mjs",
+    "check:zero-deps": "node scripts/zero-deps-check.mjs",
+    "check:bundle-size": "npm run build && node scripts/bundle-size.mjs",
+    "prepublishOnly": "npm run build && npm test && npm run typecheck && npm run check:zero-deps",
+    "docs": "npx --yes serve public -p 8888"
+  },
+  "keywords": [
+    "validation",
+    "schema",
+    "typescript",
+    "zod",
+    "inputfy"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4",
+    "yaml": "^2.9.0"
+  }
+}
